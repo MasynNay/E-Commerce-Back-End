@@ -1,44 +1,44 @@
-const router = require("express").Router();
-const { Tag, Product } = require("../../models");
+const router = require('express').Router();
+const { Tag, Product } = require('../../models');
 
-// The `/api/tags` endpoint
-
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const tagData = await Tag.findAll({
       include: [{ model: Product }],
-    });
-    res.status(200).json(tagData);
+    })
+    res.status(200).json(tagData)
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {
-      include: [{ model: Product }],
+      include: [{ model: Product }]
     })
+
     if (!tagData) {
-      res.status(404).json({ message: "No tags with that ID!" });
-      return;
+      res.status(404).json({ message: 'There are no tags with that ID!' })
+      return
     }
-    res.status(200).json(tags);
+
+    res.status(200).json(tagData)
   } catch (err) {
-    res.status(500).json(err);
+    res.status(500).json(err)
   }
 });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body)
     res.status(200).json(tagData)
   } catch (err) {
-      res.status(500).json(err)
+    res.status(500).json(err)
   }
 });
 
-router.put("/:id", async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const tagData = await Tag.update(
       {
@@ -47,7 +47,7 @@ router.put("/:id", async (req, res) => {
       {
         where: {
           id: req.params.id
-        },
+        }
       }
     )
     res.status(200).json(tagData)
@@ -55,19 +55,18 @@ router.put("/:id", async (req, res) => {
     res.status(500).json(err)
   }
 });
-
-router.delete("/:id", async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
       where: {
         id: req.params.id,
-      },
-    });
+      }
+    })
     if (!tagData) {
-      res.status(404).json ({ message: "No tags with that ID!"})
-      return;
+      res.status(404).json({ message: 'There are no tags with this ID!' })
+      return
     }
-    res.status(200).json(tags)
+    res.status(200).json(tagData)
   } catch (err) {
     res.status(500).json(err)
   }
