@@ -20,7 +20,7 @@ router.get("/:id", async (req, res) => {
       include: [{ model: Product }],
     })
     if (!tagData) {
-      res.status(404).json({ message: "There are no tags with that ID!" });
+      res.status(404).json({ message: "No tags with that ID!" });
       return;
     }
     res.status(200).json(tags);
@@ -47,7 +47,7 @@ router.put("/:id", async (req, res) => {
       {
         where: {
           id: req.params.id
-        }
+        },
       }
     )
     res.status(200).json(tagData)
@@ -61,10 +61,10 @@ router.delete("/:id", async (req, res) => {
     const tagData = await Tag.destroy({
       where: {
         id: req.params.id,
-      }
-    })
+      },
+    });
     if (!tagData) {
-      res.status(404).json ({ message: "That tag was not found. Please try another ID."})
+      res.status(404).json ({ message: "No tags with that ID!"})
       return;
     }
     res.status(200).json(tags)

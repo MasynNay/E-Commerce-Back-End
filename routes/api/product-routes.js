@@ -19,7 +19,6 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      // Include these connected models in the json response
       include: [{ model: Category }, { model: Tag }],
     });
     if (!productData) {
@@ -98,7 +97,7 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const productData = await Product.destroy({
       where: {
