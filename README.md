@@ -60,4 +60,4 @@ type "npm start" to start the database
 
 ## Video Demonstration
 
-https://drive.google.com/file/d/11h0n9wh7E9LNp2r3kSEZOiQUJ5N2C2af/view?usp=share_link
+https://drive.google.com/file/d/1AdzYY4MSyZjuhklN_SbxinZnTzoieWG-/view?usp=share_link
